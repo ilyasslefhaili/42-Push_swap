@@ -43,7 +43,7 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	done(str, i, &nmbr);
-	if (nmbr > LONG_MAX)
+	if ((nmbr > 2147483647 && s == 1) || (nmbr > 2147483648 && s == -1))
 	{
 		if (s == 1)
 			return (-1);
@@ -52,6 +52,7 @@ int	ft_atoi(const char *str)
 	}
 	return (s * nmbr);
 }
+
 
 typedef struct element {
 	int value;
@@ -86,16 +87,43 @@ void push(t_head *a, int nmbr)
 	a->first = new;
 	new -> value = nmbr;
 }
-void fillstack(char **av, int ac, t_head *a)
+
+void ft_arr(int *arr, int nbr, int e)
 {
 	int i;
 
+	i = 0;
+	while(i < e)
+	{
+		if(arr[i] == nbr)
+		{
+			write(2,"Error\n",6);
+			free(arr);
+			//system("leaks a.out");
+			exit(1);
+		}
+		i++;
+	}
+}
+
+void fillstack(char **av, int ac, t_head *a)
+{
+	int i;
+	int *arr;
+	int j;
+
+	j = 0;
+	arr = malloc(sizeof(int) * (ac - 1));
 	i = ac - 1;
 	while(i > 0)
 	{
+		ft_arr(arr,ft_atoi(av[i]), ac -1);
 		push(a, ft_atoi(av[i]));
+		arr[j] = ft_atoi(av[i]);
+		j++;
 		i--;
 	}
+	free(arr);
 }
 
 void display_list(t_element *a)
@@ -158,4 +186,5 @@ int main(int ac, char **av)
 	fillstack(av, ac, a);
 	//printf("%d\n",countstack(a -> first));
 	display_list(a->first);
+	//system("leaks a.out");
 }
