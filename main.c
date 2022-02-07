@@ -9,10 +9,7 @@
 /*   Updated: 2022/01/04 11:17:08 by ilefhail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <limits.h>
+#include "Push_swap.h"
 
 static void	done(const char *str, int i, unsigned long long *nmbr)
 {
@@ -53,16 +50,6 @@ int	ft_atoi(const char *str)
 	return (s * nmbr);
 }
 
-
-typedef struct element {
-	int value;
-	struct element *next;
-}t_element;
-
-typedef struct head {
-	t_element *first;
-}t_head;
-
 int countstack(t_element *a)
 {
 	int i;
@@ -76,7 +63,7 @@ int countstack(t_element *a)
 	return(i);
 }
 
-void push(t_head *a, int nmbr)
+void ft_push(t_head *a, int nmbr)
 {
 	t_element	*new;
 
@@ -117,8 +104,8 @@ void fillstack(char **av, int ac, t_head *a)
 	i = ac - 1;
 	while(i > 0)
 	{
-		ft_arr(arr,ft_atoi(av[i]), ac -1);
-		push(a, ft_atoi(av[i]));
+		ft_arr(arr,ft_atoi(av[i]), j);
+		ft_push(a, ft_atoi(av[i]));
 		arr[j] = ft_atoi(av[i]);
 		j++;
 		i--;
@@ -134,6 +121,7 @@ void display_list(t_element *a)
 		a = a->next;
 	}
 }
+
 int ft_strlen(char *s)
 {
 	int i;
@@ -143,6 +131,7 @@ int ft_strlen(char *s)
 		i++;
 	return(i);
 }
+
 void checknumber(char **av)
 {
 	int i;
@@ -165,7 +154,7 @@ void checknumber(char **av)
 				write(2, "Error\n", 6);
 				exit(1);
 			}
-			else if((av[i][j] <= '0' || av[i][j] >= '9' ) && av[i][j] != '-')
+			else if((av[i][j] < '0' || av[i][j] > '9' ) && av[i][j] != '-')
 			{
 				write(2, "Error\n", 6);
 				exit(1);
@@ -182,9 +171,11 @@ int main(int ac, char **av)
 	t_head *a = malloc(sizeof(t_head));
 
 	checknumber(av);
-	a -> first = NULL;
+	a->first = NULL;
 	fillstack(av, ac, a);
-	//printf("%d\n",countstack(a -> first));
+	printf("lent  : %d\n",countstack(a -> first));
 	display_list(a->first);
-	//system("leaks a.out");
+	ft_swap(a);
+	printf("swap : \n");
+	display_list(a->first);
 }
