@@ -27,8 +27,17 @@ void    ft_swap(t_head *a)
     int first;
     int second;
 
-    second = ft_pop(a);
-    first = ft_pop(a);
-    ft_push(a, second);
-    ft_push(a, first);
+    if(countstack(a->first) > 1)
+    {
+		second = ft_pop(a);
+        first = ft_pop(a);
+        ft_push(a, second);
+        ft_push(a, first);
+    }
+}
+
+void    ft_ss(t_head *a, t_head *b)
+{
+    ft_swap(a);
+    ft_swap(b);
 }

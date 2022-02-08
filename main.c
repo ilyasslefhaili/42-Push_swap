@@ -175,7 +175,10 @@ int main(int ac, char **av)
 	fillstack(av, ac, a);
 	printf("lent  : %d\n",countstack(a -> first));
 	display_list(a->first);
-	ft_swap(a);
-	printf("swap : \n");
-	display_list(a->first);
+	while(a->first)
+	{
+		ft_pop(a);
+	}
+	printf("%s",a->first);
+	//display_list(a->first);
 }
