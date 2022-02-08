@@ -173,12 +173,14 @@ int main(int ac, char **av)
 	checknumber(av);
 	a->first = NULL;
 	fillstack(av, ac, a);
-	printf("lent  : %d\n",countstack(a -> first));
+	//printf("lent  : %d\n",countstack(a -> first));
 	display_list(a->first);
-	while(a->first)
-	{
-		ft_pop(a);
-	}
-	printf("%s",a->first);
-	//display_list(a->first);
+	// while(a->first)
+	// {
+		// ft_pop(a);
+	// }
+	printf("iiii ; \n");
+	//ft_rotate(a, 'a');
+	ft_reverse_r(a, 'c');
+	display_list(a->first);
 }

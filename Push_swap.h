@@ -33,7 +33,9 @@ int ft_strlen(char *s);
 void checknumber(char **av);
 void    ft_swap(t_head *a);
 int ft_pop(t_head *a);
-
+void ft_push_a(t_head *a, t_head *b, char c);
+void	ft_rotate(t_head *a, char c);
+void	ft_reverse_r(t_head *a, char c);
 #endif
 
 
