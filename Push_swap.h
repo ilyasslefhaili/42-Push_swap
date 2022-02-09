@@ -24,18 +24,20 @@ typedef struct element {
 }t_element;
 typedef struct head {
 	t_element *first;
+	int	lent;
 }t_head;
 int countstack(t_element *a);
-void ft_push(t_head *a, int nmbr);
+void ft_push_fill(t_head *a, int nmbr);
 void ft_arr(int *arr, int nbr, int e);
 void fillstack(char **av, int ac, t_head *a);
 int ft_strlen(char *s);
 void checknumber(char **av);
 void    ft_swap(t_head *a);
 int ft_pop(t_head *a);
-void ft_push_a(t_head *a, t_head *b, char c);
+void ft_push(t_head *a, t_head *b, char c);
 void	ft_rotate(t_head *a, char c);
 void	ft_reverse_r(t_head *a, char c);
+
 #endif
 
 

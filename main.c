@@ -63,7 +63,7 @@ int countstack(t_element *a)
 	return(i);
 }
 
-void ft_push(t_head *a, int nmbr)
+void ft_push_fill(t_head *a, int nmbr)
 {
 	t_element	*new;
 
@@ -73,6 +73,7 @@ void ft_push(t_head *a, int nmbr)
 	new->next = a -> first;
 	a->first = new;
 	new -> value = nmbr;
+	a->lent++;
 }
 
 void ft_arr(int *arr, int nbr, int e)
@@ -105,7 +106,7 @@ void fillstack(char **av, int ac, t_head *a)
 	while(i > 0)
 	{
 		ft_arr(arr,ft_atoi(av[i]), j);
-		ft_push(a, ft_atoi(av[i]));
+		ft_push_fill(a, ft_atoi(av[i]));
 		arr[j] = ft_atoi(av[i]);
 		j++;
 		i--;
@@ -169,18 +170,10 @@ void checknumber(char **av)
 int main(int ac, char **av)
 {
 	t_head *a = malloc(sizeof(t_head));
+	t_head *b = malloc(sizeof(t_head));
 
-	checknumber(av);
+	b->first = NULL;
 	a->first = NULL;
-	fillstack(av, ac, a);
-	//printf("lent  : %d\n",countstack(a -> first));
-	display_list(a->first);
-	// while(a->first)
-	// {
-		// ft_pop(a);
-	// }
-	printf("iiii ; \n");
-	//ft_rotate(a, 'a');
-	ft_reverse_r(a, 'c');
-	display_list(a->first);
+	
+
 }
