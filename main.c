@@ -227,3 +227,4 @@ int main(int ac, char **av)
 		ft_push(a, b, 'a');
 	//display_list(a->first);
 }
+
