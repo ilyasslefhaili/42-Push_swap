@@ -171,9 +171,40 @@ int main(int ac, char **av)
 {
 	t_head *a = malloc(sizeof(t_head));
 	t_head *b = malloc(sizeof(t_head));
+	int i;
+	int j;
 
+	a->lent = 0;
+	b->lent = 0;
 	b->first = NULL;
 	a->first = NULL;
-	
-
+	fillstack(av, ac, a);
+	while(a->first)
+	{
+		i = 0;
+		j = 0;
+		ft_push(b, a, 'b');
+		if(b->lent ==  1)
+		{
+			ft_push(b, a,'b');
+			i++;
+		}
+		while(b->first->value < b->first->next->value)
+		{
+			ft_swap(b, 'b');
+			ft_push(a, b, 'a');
+			i++;
+			if(b->lent <= 1)
+				break ;
+		}
+		while(j > i)
+		{
+			ft_push(b, a, 'b');
+			j++;
+		}
+	}
+	while(b->first)
+		ft_push(a, b, 'a');
+	//display_list(a->first);
+	//display_list(b->first);
 }

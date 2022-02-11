@@ -32,7 +32,7 @@ void ft_arr(int *arr, int nbr, int e);
 void fillstack(char **av, int ac, t_head *a);
 int ft_strlen(char *s);
 void checknumber(char **av);
-void    ft_swap(t_head *a);
+void    ft_swap(t_head *a, char c);
 int ft_pop(t_head *a);
 void ft_push(t_head *a, t_head *b, char c);
 void	ft_rotate(t_head *a, char c);

@@ -23,7 +23,7 @@ int  ft_pop(t_head *a)
     return c;
 }
 
-void    ft_swap(t_head *a)
+void    ft_swap(t_head *a, char c)
 {
     int first;
     int second;
@@ -35,12 +35,16 @@ void    ft_swap(t_head *a)
         ft_push_fill(a, second);
         ft_push_fill(a, first);
     }
+	if(c == 'a')
+		write(1, "sa", 2);
+	else if(c == 'a')
+		write(1, "sb", 2);
 }
 
 void    ft_ss(t_head *a, t_head *b)
 {
-    ft_swap(a);
-    ft_swap(b);
+    ft_swap(a, 'r');
+    ft_swap(b, 'r');
 }
 
 void ft_push(t_head *a, t_head *b, char c)
