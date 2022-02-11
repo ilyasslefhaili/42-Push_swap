@@ -133,6 +133,21 @@ int ft_strlen(char *s)
 	return(i);
 }
 
+int	checkismin(t_element *b)
+{
+	int i;
+	int e;
+
+	e = b->value;
+	while(e < b->value)
+	{
+		b = b->next;
+		if(b == NULL)
+			return 1;
+	}
+	return 0;
+}
+
 void checknumber(char **av)
 {
 	int i;
@@ -191,9 +206,14 @@ int main(int ac, char **av)
 		}
 		while(b->first->value < b->first->next->value)
 		{
-			ft_swap(b, 'b');
-			ft_push(a, b, 'a');
-			i++;
+			if(checkismin(b->first))
+				ft_rotate(b, 'b');
+			else
+			{
+				ft_swap(b, 'b');
+				ft_push(a, b, 'a');
+				i++;
+			}
 			if(b->lent <= 1)
 				break ;
 		}
