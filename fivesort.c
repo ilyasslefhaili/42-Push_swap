@@ -45,5 +45,4 @@ int main(int ac, char **av)
 	while(b->first)
 		ft_push(a, b, 'a');
 	//display_list(a->first);
-	//printf("%d", checkismin(a->first));
 }
