@@ -85,19 +85,22 @@ void	ft_reverse_r(t_head *a, char c)
 	t_element	*temp;
 	t_element	*temp1;
 
-	temp = a->first;
-	while(temp->next)
+	if(a->first->next != NULL)
 	{
-		temp1 = temp;
-		temp = temp->next;
+		temp = a->first;
+		while(temp->next)
+		{
+			temp1 = temp;
+			temp = temp->next;
+		}
+		temp1->next=NULL;
+		temp -> next = a->first;
+		a->first = temp;
+		if(c == 'a')
+			write(1, "rra\n", 4);
+		else if(c == 'b')
+			write(1, "rrb\n", 4);
 	}
-	temp1->next=NULL;
-	temp -> next = a->first;
-	a->first = temp;
-	if(c == 'a')
-		write(1, "rra\n", 3);
-	else if(c == 'b')
-		write(1, "rrb\n", 3);
 }
 
 void	ft_rrr(t_head *a, t_head *b)
