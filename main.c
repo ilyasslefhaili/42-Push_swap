@@ -75,7 +75,6 @@ void ft_push_fill(t_head *a, int nmbr)
 	a->first = new;
 	new -> value = nmbr;
 	a->len++;
-	new->check = 1;
 }
 
 void ft_arr(int *arr, int nbr, int e)
@@ -120,7 +119,7 @@ void display_list(t_element *a)
 {
 	while(a != NULL)
 	{
-		printf("%d : %zu\n",a->value, a->index);
+		printf("%d : %d\n",a->value, a->index);
 		a = a->next;
 	}
 }
@@ -146,17 +145,14 @@ int	checkismin(t_element *b)
 	e = 0;
 	while(b)
 	{
-		if(b->value < a && b->check == 1)
-		{
+		if(b->value < a)
 			a = b->value;
-			e = i;
-		}
 		b = b->next;
 		if(b == NULL)
 			break ;
 		i++;
 	}
-	return e;
+	return a;
 }
 
 void checknumber(char **av)
@@ -201,6 +197,7 @@ void checknumber(char **av)
 		i++;
 	}
 }
+
 void ft_bable(int *a, int ac)
 {
 	int i;
@@ -256,6 +253,74 @@ void	ft_index(t_element *a, int ac)
 	free(abab);
 }
 
+void	ready_to_push(t_head *a, t_head *b, int max, int min,int thep)
+{
+	int i;
+	int j;
+	int e;
+	t_element	*temp;
+
+	i = 0;
+	j = 0;
+	//printf("%d", thep);
+	while(i < thep)
+	{
+		temp = a->first;
+		e = 0;
+		//printf("%d\n", thep);
+		while(temp->value > max || temp->value < min)
+		{
+			//printf("\\\\\\");
+			temp = temp->next;
+			if(temp == NULL)
+				break ;
+			e++;
+		}
+		//printf("kwi\n");
+		j = 0;
+		// if(a->len - e > e)
+		// {
+			while(j < e)
+			{
+				ft_rotate(a, 'a');
+				j++;
+			}
+		// }
+		// else
+		// {
+		// 	while(j < a->len - e)
+		// 	{
+		// 		//ft_reverse_r(a, 'c');
+		// 		j++;
+		// 	}
+		// }
+		ft_push(b, a, 'b');
+		i++;
+	}
+}
+
+void	sorting(t_head *a, t_head *b)
+{
+	int min;
+	int max;
+	int thep;
+	int j;
+	int i;
+
+	i = 0;
+	while(i < a->len - 5)
+	{
+		min = checkismin(a->first);
+		thep = (a->len - 5) / 3 + 1;
+		max = min + thep - 1;
+		//printf("max %d", max);
+		j = 0;
+		//printf("%d\n", j);
+		ready_to_push(a, b, max, min, thep);	
+		i++;
+	}
+}
+
 int main(int ac, char **av)
 {
 	t_head *a = malloc(sizeof(t_head));
@@ -269,5 +334,7 @@ int main(int ac, char **av)
 	checknumber(av);
 	fillstack(av, ac, a);
 	ft_index(a->first, ac);
-	display_list(a->first);
+	sorting(a, b);
+	display_list(b->first);
+	//printf("%d",checkismin(a->first));
 }

@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "Push_swap.h"
+
 int  ft_pop(t_head *a)
 {
     t_element   *temp;
@@ -49,8 +50,12 @@ void    ft_ss(t_head *a, t_head *b)
 
 void ft_push(t_head *a, t_head *b, char c)
 {
+	int ind;
+
 	ft_push_fill(a, b->first->value);
+	ind = b->first->index;
 	ft_pop(b);
+	a->first->index = ind;
 	if(c == 'a')
 		write(1, "pa\n", 3);
 	else if(c == 'b')

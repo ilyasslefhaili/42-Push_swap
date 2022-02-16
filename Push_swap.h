@@ -17,19 +17,23 @@
 # include <unistd.h>
 # include <limits.h>
 
-char	**ft_split(char const *s, char c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+
 int	ft_atoi(const char *str);
 typedef struct element {
 	int value;
 	struct element *next;
-	size_t	index;
-	int	check;
+	int	index;
 }t_element;
 typedef struct head {
 	t_element *first;
 	int	len;
 }t_head;
+void ft_bable(int *a, int ac);
+void	ft_index(t_element *a, int ac);
+void	sorting(t_head *a, t_head *b);
+void	ready_to_push(t_head *a, t_head *b, int max,int min, int thep);
+char	**ft_split(char const *s, char c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 int countstack(t_element *a);
 void ft_push_fill(t_head *a, int nmbr);
 void ft_arr(int *arr, int nbr, int e);
