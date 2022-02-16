@@ -260,9 +260,6 @@ int main(int ac, char **av)
 {
 	t_head *a = malloc(sizeof(t_head));
 	t_head *b = malloc(sizeof(t_head));
-	int i;
-	int j;
-	int k;
 
 	a->len = 0;
 	b->len = 0;
