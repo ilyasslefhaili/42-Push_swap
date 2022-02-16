@@ -19,7 +19,7 @@ int  ft_pop(t_head *a)
     temp = a->first;
     a->first = a->first->next;
     free(temp);
-	a->lent = a->lent - 1;
+	a->len = a->len - 1;
     return c;
 }
 
@@ -36,9 +36,9 @@ void    ft_swap(t_head *a, char c)
         ft_push_fill(a, first);
     }
 	if(c == 'a')
-		write(1, "sa", 2);
+		write(1, "sa\n", 3);
 	else if(c == 'a')
-		write(1, "sb", 2);
+		write(1, "sb\n", 3);
 }
 
 void    ft_ss(t_head *a, t_head *b)
@@ -109,3 +109,4 @@ void	ft_rrr(t_head *a, t_head *b)
 	ft_reverse_r(b, 'r');
 	write(1, "rrr\n", 4);
 }
+

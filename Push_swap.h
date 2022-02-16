@@ -17,14 +17,18 @@
 # include <unistd.h>
 # include <limits.h>
 
+char	**ft_split(char const *s, char c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 int	ft_atoi(const char *str);
 typedef struct element {
 	int value;
 	struct element *next;
+	size_t	index;
+	int	check;
 }t_element;
 typedef struct head {
 	t_element *first;
-	int	lent;
+	int	len;
 }t_head;
 int countstack(t_element *a);
 void ft_push_fill(t_head *a, int nmbr);

@@ -9,6 +9,7 @@
 /*   Updated: 2022/01/04 11:17:08 by ilefhail         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "Push_swap.h"
 
 static void	done(const char *str, int i, unsigned long long *nmbr)
@@ -73,7 +74,8 @@ void ft_push_fill(t_head *a, int nmbr)
 	new->next = a -> first;
 	a->first = new;
 	new -> value = nmbr;
-	a->lent++;
+	a->len++;
+	new->check = 1;
 }
 
 void ft_arr(int *arr, int nbr, int e)
@@ -118,7 +120,7 @@ void display_list(t_element *a)
 {
 	while(a != NULL)
 	{
-		printf("%d\n",a->value);
+		printf("%d : %zu\n",a->value, a->index);
 		a = a->next;
 	}
 }
@@ -144,7 +146,7 @@ int	checkismin(t_element *b)
 	e = 0;
 	while(b)
 	{
-		if(b->value < a)
+		if(b->value < a && b->check == 1)
 		{
 			a = b->value;
 			e = i;
@@ -165,6 +167,16 @@ void checknumber(char **av)
 	i = 1;
 	while(av[i])
 	{
+		j = 0;
+		while(av[i][j])
+		{
+			if(av[i][j] == '#' || av[i][j] == '$')
+			{
+				write(2, "Error\n", 6);
+				exit(1);
+			}
+			j++;
+		}
 		j = 0;
 		if((ft_atoi(av[i]) == -1 || ft_atoi(av[i]) == 0) && ft_strlen(av[i]) >= 10)
 		{
@@ -189,4 +201,76 @@ void checknumber(char **av)
 		i++;
 	}
 }
+void ft_bable(int *a, int ac)
+{
+	int i;
+	int j;
 
+	i = 0;
+	j = 0;
+	while(i < ac - 1)
+	{
+		j = i;
+		while(j < ac - 1)
+		{
+			if(a[i] > a[j])
+			{
+				a[i] = a[j] + a[i];
+				a[j] = a[i] - a[j];
+				a[i] = a[i] - a[j];
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	ft_index(t_element *a, int ac)
+{
+	int	i;
+	int j;
+	int *abab;
+	t_element *b;
+
+	b = a;
+	abab = malloc(sizeof(int) * (ac - 1));
+	i = 0;
+	while(a)
+	{
+		abab[i] = a->value;
+		i++;
+		a = a->next;
+	}
+	ft_bable(abab, ac);
+	while(b)
+	{
+		i = 0;
+		while(i < ac - 1)
+		{
+			if(b->value == abab[i])
+				b->index = i;
+			i++;
+		}
+		b = b->next;
+	}
+	free(abab);
+}
+
+int main(int ac, char **av)
+{
+	t_head *a = malloc(sizeof(t_head));
+	t_head *b = malloc(sizeof(t_head));
+	int i;
+	int j;
+	int k;
+
+	a->len = 0;
+	b->len = 0;
+	j = a->len;
+	b->first = NULL;
+	a->first = NULL;
+	checknumber(av);
+	fillstack(av, ac, a);
+	ft_index(a->first, ac);
+	display_list(a->first);
+}
