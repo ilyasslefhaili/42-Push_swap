@@ -119,7 +119,7 @@ void display_list(t_element *a)
 {
 	while(a != NULL)
 	{
-		printf("%d : %d\n",a->value, a->index);
+		printf("%d == index == %d\n",a->value, a->index);
 		a = a->next;
 	}
 }
@@ -253,7 +253,7 @@ void	ft_index(t_element *a, int ac)
 	free(abab);
 }
 
-void	ready_to_push(t_head *a, t_head *b, int max, int min,int thep)
+void	ready_to_push(t_head *a, t_head *b, int max, int min,int thep, int *k)
 {
 	int i;
 	int j;
@@ -262,39 +262,38 @@ void	ready_to_push(t_head *a, t_head *b, int max, int min,int thep)
 
 	i = 0;
 	j = 0;
-	//printf("%d", thep);
 	while(i < thep)
 	{
 		temp = a->first;
 		e = 0;
-		//printf("%d\n", thep);
 		while(temp->value > max || temp->value < min)
 		{
-			//printf("\\\\\\");
 			temp = temp->next;
 			if(temp == NULL)
 				break ;
 			e++;
 		}
-		//printf("kwi\n");
 		j = 0;
-		// if(a->len - e > e)
-		// {
+		if(a->len - e > e)
+		{
 			while(j < e)
 			{
 				ft_rotate(a, 'a');
 				j++;
 			}
-		// }
-		// else
-		// {
-		// 	while(j < a->len - e)
-		// 	{
-		// 		//ft_reverse_r(a, 'c');
-		// 		j++;
-		// 	}
-		// }
+		}
+		else
+		{
+			while(j < a->len - e)
+			{
+				ft_reverse_r(a, 'a');
+				j++;
+			}
+		}
+		if(a->first->value > max)
+			break ;
 		ft_push(b, a, 'b');
+		*k = *k + 1;
 		i++;
 	}
 }
@@ -308,16 +307,16 @@ void	sorting(t_head *a, t_head *b)
 	int i;
 
 	i = 0;
-	while(i < a->len - 5)
+	j = a->len;
+	while(i <  j - 5)
 	{
 		min = checkismin(a->first);
-		thep = (a->len - 5) / 3 + 1;
-		max = min + thep - 1;
+		thep = (a->len - 5) / 4 + 1;
+		max = min + thep;
 		//printf("max %d", max);
-		j = 0;
 		//printf("%d\n", j);
-		ready_to_push(a, b, max, min, thep);	
-		i++;
+		ready_to_push(a, b, max, min, thep, &i);
+		//printf("%d\n", i);
 	}
 }
 
@@ -328,13 +327,16 @@ int main(int ac, char **av)
 
 	a->len = 0;
 	b->len = 0;
-	j = a->len;
 	b->first = NULL;
 	a->first = NULL;
 	checknumber(av);
 	fillstack(av, ac, a);
 	ft_index(a->first, ac);
 	sorting(a, b);
+	fivesort(a, b);
+	printf("a\n ------------------\n");
+	display_list(a->first);
+	printf("b\n ------------------\n");
 	display_list(b->first);
 	//printf("%d",checkismin(a->first));
 }

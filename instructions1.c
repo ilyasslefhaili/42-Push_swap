@@ -28,13 +28,19 @@ void    ft_swap(t_head *a, char c)
 {
     int first;
     int second;
+	int index1;
+	int index2;
 
     if(countstack(a->first) > 1)
     {
+		index1 = a->first->index;
+		index2 = a->first->next->index;
 		second = ft_pop(a);
         first = ft_pop(a);
         ft_push_fill(a, second);
+		a->first->index = index1;
         ft_push_fill(a, first);
+		a->first->index = index2;
     }
 	if(c == 'a')
 		write(1, "sa\n", 3);

@@ -1,23 +1,41 @@
-int main(int ac, char **av)
+#include "Push_swap.h"
+int	ft_checkismin_five(t_element *b)
 {
-	t_head *a = malloc(sizeof(t_head));
-	t_head *b = malloc(sizeof(t_head));
+	int i;
+	int e;
+	int a;
+
+	a = b->value;
+	i = 0;
+	e = 0;
+	while(b)
+	{
+		if(b->value < a)
+		{
+			a = b->value;
+			e = i;
+		}
+		b = b->next;
+		if(b == NULL)
+			break ;
+		i++;
+	}
+	return e;
+}
+
+
+void	fivesort(t_head *a, t_head *b)
+{
 	int i;
 	int j;
 	int k;
 
-	a->lent = 0;
-	b->lent = 0;
-	j = a->lent;
-	b->first = NULL;
-	a->first = NULL;
-	fillstack(av, ac, a);
 	while(a->first)
 	{
 		i = 0;
 		j = 0;
-		k = checkismin(a->first);
-		if(k < a->lent - k)
+		k = ft_checkismin_five(a->first);
+		if(k < a->len - k)
 		{
 			while(i < k)
 			{
@@ -25,12 +43,12 @@ int main(int ac, char **av)
 				i++;
 			}
 		}
-		//printf("i'm number %d\n",a->lent - k);
-		//if(a->lent == 0)
+		//printf("i'm number %d\n",a->len - k);
+		//if(a->len == 0)
 		//	break ;
 		else
 		{
-			while(j < a->lent - k)
+			while(j < a->len - k)
 			{
 				ft_reverse_r(a, 'a');
 				j++;
@@ -42,7 +60,10 @@ int main(int ac, char **av)
 	}
 	if(a->first->value > a->first->next->value)
 		ft_swap(a, 'a');
-	while(b->first)
+	i = 1;
+	while(i < 4)
+	{
 		ft_push(a, b, 'a');
-	//display_list(a->first);
+		i++;
+	}
 }
