@@ -61,7 +61,7 @@ void	fivesort(t_head *a, t_head *b)
 	if(a->first->value > a->first->next->value)
 		ft_swap(a, 'a');
 	i = 1;
-	while(i < 4)
+	while(b->first)
 	{
 		ft_push(a, b, 'a');
 		i++;
