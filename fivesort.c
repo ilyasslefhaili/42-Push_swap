@@ -43,9 +43,6 @@ void	fivesort(t_head *a, t_head *b)
 				i++;
 			}
 		}
-		//printf("i'm number %d\n",a->len - k);
-		//if(a->len == 0)
-		//	break ;
 		else
 		{
 			while(j < a->len - k)
@@ -61,7 +58,7 @@ void	fivesort(t_head *a, t_head *b)
 	if(a->first->value > a->first->next->value)
 		ft_swap(a, 'a');
 	i = 1;
-	while(b->first)
+	while(i < 4)
 	{
 		ft_push(a, b, 'a');
 		i++;
