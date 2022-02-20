@@ -51,19 +51,6 @@ int	ft_atoi(const char *str)
 	return (s * nmbr);
 }
 
-int countstack(t_element *a)
-{
-	int i;
-
-	i = 0;
-	while(a != NULL)
-	{
-		a  = a->next;
-		i++;
-	}
-	return(i);
-}
-
 void ft_push_fill(t_head *a, int nmbr)
 {
 	t_element	*new;
@@ -113,15 +100,6 @@ void fillstack(char **av, int ac, t_head *a)
 		i--;
 	}
 	free(arr);
-}
-
-void display_list(t_element *a)
-{
-	while(a != NULL)
-	{
-		printf("%d == index == %d\n",a->value, a->index);
-		a = a->next;
-	}
 }
 
 int ft_strlen(char *s)
@@ -228,7 +206,6 @@ void ft_bable(int *a, int ac)
 void	ft_index(t_element *a, int ac)
 {
 	int	i;
-	int j;
 	int *abab;
 	t_element *b;
 
@@ -282,7 +259,6 @@ int	ft_checkismax(t_element *b)
 void	ft_return_in_a(t_head *a, t_head *b)
 {
 	int i;
-	int j;
 
 	while(b->first)
 	{
@@ -296,11 +272,6 @@ void	ft_return_in_a(t_head *a, t_head *b)
 				i++;
 			}
 			ft_push(a, b, 'a');
-			// while(i > 0)
-			// {
-			// 	ft_reverse_r(b, 'b');
-			// 	i--;
-			// }
 		}
 		else
 		{
@@ -310,18 +281,13 @@ void	ft_return_in_a(t_head *a, t_head *b)
 				i++;
 			}
 			ft_push(a, b, 'a');
-			// while(i > 0)
-			// {
-			// 	ft_rotate(b, 'b');
-			// 	i--;
-			// }
 		}
 
 	}
 
 }
 
-void	ready_to_push(t_head *a, t_head *b, int max, int min,int thep, int *k)
+void	ready_to_push(t_head *a, t_head *b, t_min_max nx, int *k)
 {
 	int i;
 	int j;
@@ -330,19 +296,18 @@ void	ready_to_push(t_head *a, t_head *b, int max, int min,int thep, int *k)
 
 	i = 0;
 	j = 0;
-	while(i < thep)
+	while(i < nx.thep)
 	{
 		temp = a->first;
 		e = 0;
 		
-		while(temp->index > max || temp->index < min)
+		while(temp->index > nx.max || temp->index < nx.min)
 		{
 			temp = temp->next;
 			if(temp == NULL)
 				break ;
 			e++;
 		}
-		//printf("min == %d , max == %d", min , max);
 		j = 0;
 		if(a->len - e > e)
 		{
@@ -360,7 +325,7 @@ void	ready_to_push(t_head *a, t_head *b, int max, int min,int thep, int *k)
 				j++;
 			}
 		}
-		if(a->first->index > max)
+		if(a->first->index > nx.max)
 			break ;
 		ft_push(b, a, 'b');
 		*k = *k + 1;
@@ -370,9 +335,7 @@ void	ready_to_push(t_head *a, t_head *b, int max, int min,int thep, int *k)
 
 void	sorting(t_head *a, t_head *b)
 {
-	int min;
-	int max;
-	int thep;
+	t_min_max nx;
 	int j;
 	int i;
 
@@ -380,37 +343,34 @@ void	sorting(t_head *a, t_head *b)
 	j = a->len;
 	while(i <  j - 5)
 	{
-		min = checkismin(a->first);
-		thep = (a->len - 5) / 6 + 1;
-		max = thep + min - 1;
-		//printf("max %d", max);
-		//printf("%d\n", j);
-		ready_to_push(a, b, max, min, thep, &i);
-		//printf("%d\n", i);
-		//printf("kkk\n");
+		nx.min = checkismin(a->first);
+		nx.thep = (a->len - 5) / 6 + 1;
+		nx.max = nx.thep + nx.min - 1;
+		ready_to_push(a, b, nx, &i);
 	}
 }
 
 int main(int ac, char **av)
 {
-	t_head *a = malloc(sizeof(t_head));
-	t_head *b = malloc(sizeof(t_head));
+	t_head *a;
+	t_head *b;
 
+	a = malloc(sizeof(t_head));
+	b = malloc(sizeof(t_head));
 	a->len = 0;
 	b->len = 0;
 	b->first = NULL;
 	a->first = NULL;
 	checknumber(av);
 	fillstack(av, ac, a);
-	ft_index(a->first, ac);
-	sorting(a, b);
-	fivesort(a, b);
-	//printf("a\n ------------------\n");
-	//display_list(a->first);
-	//printf("b\n ------------------\n");
-	//display_list(b->first);
-	ft_return_in_a(a, b);
-	//printf("a\n ------------------\n");
-	//display_list(a->first);
-	//printf("%d",checkismin(a->first));
+	if(a->len <= 5)
+		fivesort(a, b);
+	else
+	{
+		ft_index(a->first, ac);
+		sorting(a, b);
+		fivesort(a, b);
+		ft_return_in_a(a, b);
+	}
+	free(b);
 }
