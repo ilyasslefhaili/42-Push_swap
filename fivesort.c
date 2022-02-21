@@ -48,7 +48,7 @@ void	ft_sort_3(t_head *a)
 	}
 }
 
-void	ft_sort_a_in_b(t_head *a , int k)
+void	ft_sort_a_in_b(t_head *a, int k)
 {
 	int	i;
 	int	j;
@@ -73,12 +73,23 @@ void	ft_sort_a_in_b(t_head *a , int k)
 	}
 }
 
+void	ft_while(t_head *a, t_head *b)
+{
+	int	i;
+
+	i = 1;
+	while (i < 4)
+	{
+		ft_push(a, b, 'a');
+		i++;
+	}
+}
+
 void	fivesort(t_head *a, t_head *b)
 {
 	int	k;
-	int	i;
 
-	if(a->len > 3)
+	if (a->len > 3)
 	{
 		while (a->first)
 		{
@@ -89,11 +100,12 @@ void	fivesort(t_head *a, t_head *b)
 				break ;
 		}
 	}
-	ft_sort_3(a);
-	i = 1;
-	while (i < 4)
+	if (a->len == 3)
+		ft_sort_3(a);
+	else
 	{
-		ft_push(a, b, 'a');
-		i++;
+		if (a->first->value > a->first->next->value)
+			ft_swap(a, 'a');
 	}
+	ft_while(a, b);
 }

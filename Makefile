@@ -10,9 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap.a
+NAME = push_swap
 
-CC = gcc -c
+CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -23,25 +23,25 @@ OUT = push_swap
 SRCS = instructions1.c\
 		instructions2.c\
 		main.c\
-		fivesort.c
+		fivesort.c\
+		atoi.c\
+		check.c\
+		ft_fill_stack.c\
+		fun_for_help.c
 
 OBJS = $(subst .c,.o,$(SRCS))
 
-all : $(OUT)
+all : $(NAME)
 	
-$(OUT) : $(NAME)
-	gcc $(NAME) -o push_swap
-
-$(NAME) :$(OBJS)
-	$(CC) $(FLAGS) $(SRCS)
-	$(AR) $(NAME) $(OBJS)
+$(NAME) : $(OBJS)
+	$(CC) $(FLAGS)  $(SRCS) -o  $(NAME)
+	@echo [executable Created]
 
 clean :
-	rm -rf $(OBJS)
+	@rm -rf $(OBJS)
+	@rm -rf push_swap.a
 
 fclean : clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re : fclean all
-
-

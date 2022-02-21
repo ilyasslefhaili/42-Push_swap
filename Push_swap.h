@@ -17,36 +17,43 @@
 # include <unistd.h>
 # include <limits.h>
 
-
-int	ft_atoi(const char *str);
 typedef struct element {
-	int value;
-	struct element *next;
-	int	index;
+	int				value;
+	struct element	*next;
+	int				index;
 }t_element;
 typedef struct head {
-	t_element *first;
-	int	len;
+	t_element	*first;
+	int			len;
 }t_head;
+typedef struct min_max{
+	int	min;
+	int	max;
+	int	thep;
+}t_min_max;
+int		ft_atoi(const char *str);
+void	error(void);
+int		ft_checkismax(t_element *b);
+int		checkismin(t_element *b);
 void	fivesort(t_head *a, t_head *b);
-void ft_bable(int *a, int ac);
+void	ft_bable(int *a, int ac);
 void	ft_index(t_element *a, int ac);
 void	sorting(t_head *a, t_head *b);
-void	ready_to_push(t_head *a, t_head *b, int max,int min, int thep,int *k);
+void	ready_to_push(t_head *a, t_head *b, t_min_max nx, int *k);
 char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-int countstack(t_element *a);
-void ft_push_fill(t_head *a, int nmbr);
-void ft_arr(int *arr, int nbr, int e);
-void fillstack(char **av, int ac, t_head *a);
-int ft_strlen(char *s);
-void checknumber(char **av);
-void    ft_swap(t_head *a, char c);
-int ft_pop(t_head *a);
-void ft_push(t_head *a, t_head *b, char c);
+void	ft_push_fill(t_head *a, int nmbr);
+void	ft_arr(int *arr, int nbr, int e);
+void	fillstack(char **av, int ac, t_head *a);
+int		ft_strlen(char *s);
+void	checknumber(char **av);
+void	ft_swap(t_head *a, char c);
+int		ft_pop(t_head *a);
+void	ft_push(t_head *a, t_head *b, char c);
 void	ft_rotate(t_head *a, char c);
 void	ft_reverse_r(t_head *a, char c);
+void	check_is_str_empty(char **av, int ac);
+void	check_if_sort(t_element *a, int ac);
+int		ft_strcmp(char *s1, char *s2);
 
 #endif
-
-
