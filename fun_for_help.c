@@ -112,7 +112,7 @@ void	ft_index(t_element *a, int ac)
 	free(abab);
 }
 
-int	ft_strlen(char *s)
+int	ft_strlen(const char *s)
 {
 	int	i;
 

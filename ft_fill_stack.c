@@ -33,7 +33,6 @@ void	ft_arr(int *arr, int nbr, int e)
 	{
 		if (arr[i] == nbr)
 		{
-			
 			write(2, "Error\n", 6);
 			free(arr);
 			exit(1);
@@ -60,4 +59,11 @@ void	fillstack(char **av, int ac, t_head *a)
 		i--;
 	}
 	free(arr);
+}
+
+void	ft_free(t_head *a)
+{
+	while (a->first)
+		ft_pop(a);
+	free(a);
 }

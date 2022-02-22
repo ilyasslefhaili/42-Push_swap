@@ -31,6 +31,7 @@ typedef struct min_max{
 	int	max;
 	int	thep;
 }t_min_max;
+void	ft_free(t_head *a);
 int		ft_atoi(const char *str);
 void	error(void);
 int		ft_checkismax(t_element *b);
@@ -45,7 +46,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	ft_push_fill(t_head *a, int nmbr);
 void	ft_arr(int *arr, int nbr, int e);
 void	fillstack(char **av, int ac, t_head *a);
-int		ft_strlen(char *s);
+int		ft_strlen(const char *s);
 void	checknumber(char **av);
 void	ft_swap(t_head *a, char c);
 int		ft_pop(t_head *a);
@@ -55,5 +56,14 @@ void	ft_reverse_r(t_head *a, char c);
 void	check_is_str_empty(char **av, int ac);
 void	check_if_sort(t_element *a, int ac);
 int		ft_strcmp(char *s1, char *s2);
+char	*ft_strdup(char	*src);
+char	*ft_strjoin(char const	*s1, char const	*s2);
+void	*ft_calloc(size_t count, size_t size);
+char	*ft_strchr(char *str, int c);
+char	*get_next_line(int fd, int BUFFER_SIZE);
+void	ft_ss(t_head *a, t_head *b);
+void	ft_rr(t_head *a, t_head *b);
+void	ft_rrr(t_head *a, t_head *b);
+
 
 #endif

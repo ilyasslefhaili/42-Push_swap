@@ -131,5 +131,6 @@ int	main(int ac, char **av)
 		fivesort(a, b);
 		ft_return_in_a(a, b);
 	}
-	free(b);
+	ft_free(a);
+	ft_free(b);
 }
