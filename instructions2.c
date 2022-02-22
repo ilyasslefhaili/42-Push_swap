@@ -30,13 +30,14 @@ void	ft_rotate(t_head *a, char c)
 	}
 }
 
-void	ft_rr(t_head *a, t_head *b)
+void	ft_rr(t_head *a, t_head *b, int c)
 {
 	if (a->len > 1 || b->len > 1)
 	{
 		ft_rotate(a, 'r');
 		ft_rotate(b, 'r');
-		write(1, "rr\n", 3);
+		if(c == 1)
+			write(1, "rr\n", 3);
 	}
 }
 
@@ -63,12 +64,13 @@ void	ft_reverse_r(t_head *a, char c)
 	}
 }
 
-void	ft_rrr(t_head *a, t_head *b)
+void	ft_rrr(t_head *a, t_head *b, int c)
 {
 	if (a->len > 1 || b->len > 1)
 	{
 		ft_reverse_r(a, 'r');
 		ft_reverse_r(b, 'r');
-		write(1, "rrr\n", 4);
+		if(c == 1)
+			write(1, "rrr\n", 4);
 	}
 }

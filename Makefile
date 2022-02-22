@@ -31,7 +31,7 @@ SRCS = instructions1.c\
 		main.c\
 		fivesort.c\
 		atoi.c\
-		check.c\
+		check_numbers.c\
 		ft_fill_stack.c\
 		fun_for_help.c
 

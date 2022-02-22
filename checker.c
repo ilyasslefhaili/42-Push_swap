@@ -39,12 +39,51 @@ int	check(t_element *a, int ac)
 	return(-1);
 }
 
+void ft_if(t_head *a, t_head *b, char *str)
+{
+	if (ft_strcmp(str, "pa\n") == 0)
+		ft_push(a, b, 'c');	
+	else if (ft_strcmp(str, "pb\n") == 0)
+		ft_push(b, a, 'c');
+	else if (ft_strcmp(str, "ra\n") == 0)
+		ft_rotate(a, 'c');
+	else if (ft_strcmp(str, "rb\n") == 0)
+		ft_rotate(a, 'c');
+	else if(ft_strcmp(str, "rr\n") == 0)
+		ft_rr(a, b, 0);
+	else if (ft_strcmp(str, "sa\n") == 0)
+		ft_swap(a, 'c');
+	else if (ft_strcmp(str, "sb\n") == 0)
+		ft_swap(b, 'c');
+	else if (ft_strcmp(str, "ss\n") == 0)
+		ft_ss(a, b, 0);
+	else if (ft_strcmp(str, "rra\n") == 0)
+		ft_reverse_r(a, 'r');
+	else if (ft_strcmp(str, "rrb\n") == 0)
+		ft_reverse_r(b, 'r');
+	else if (ft_strcmp(str, "rrr\n") == 0)
+		ft_rrr(a, b, 0);
+	else
+		error();
+}
+
+void	ft_if1(t_element *a, int ac, int size, int len)
+{
+	if(check(a, ac) == 0)
+		write(1, "KO\n", 3);
+	else if (len != size)
+		write(1, "KO\n", 3);
+	else if(check(a, ac) == -1)
+		write(1, "OK\n", 3);
+}
+
 int main(int ac, char **av)
 {
 	t_head	*a;
 	t_head	*b;
 	char	*str;
 	int		size;
+
 	if(ac <= 1)
 		exit(0);
 	check_is_str_empty(av, ac);
@@ -60,37 +99,9 @@ int main(int ac, char **av)
 	str = get_next_line(0, 1);
 	while(str)
 	{
-		if (ft_strcmp(str, "pa\n") == 0)
-			ft_push(a, b, 'c');	
-		else if (ft_strcmp(str, "pb\n") == 0)
-			ft_push(b, a, 'c');
-		else if (ft_strcmp(str, "ra\n") == 0)
-			ft_rotate(a, 'c');
-		else if (ft_strcmp(str, "rb\n") == 0)
-			ft_rotate(a, 'c');
-		else if(ft_strcmp(str, "rr\n") == 0)
-			ft_rr(a, b);
-		else if (ft_strcmp(str, "sa\n") == 0)
-			ft_swap(a, 'c');
-		else if (ft_strcmp(str, "sb\n") == 0)
-			ft_swap(b, 'c');
-		else if (ft_strcmp(str, "ss\n") == 0)
-			ft_ss(a, b);
-		else if (ft_strcmp(str, "rra\n") == 0)
-			ft_reverse_r(a, 'r');
-		else if (ft_strcmp(str, "rrb\n") == 0)
-			ft_reverse_r(b, 'r');
-		else if (ft_strcmp(str, "rrr\n") == 0)
-			ft_rrr(a, b);
-		else
-			error();
+		ft_if(a, b, str);
 		str = get_next_line(0, 1);
 	}
-	if(check(a->first, ac) == 0)
-		write(1, "KO\n", 3);
-	else if (a->len != size)
-		write(1, "KO\n", 3);
-	else if(check(a->first, ac) == -1)
-		write(1, "OK\n", 3);
+	ft_if1(a->first, ac, size, a->len);
 }
 

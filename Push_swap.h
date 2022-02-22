@@ -61,9 +61,9 @@ char	*ft_strjoin(char const	*s1, char const	*s2);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strchr(char *str, int c);
 char	*get_next_line(int fd, int BUFFER_SIZE);
-void	ft_ss(t_head *a, t_head *b);
-void	ft_rr(t_head *a, t_head *b);
-void	ft_rrr(t_head *a, t_head *b);
+void	ft_ss(t_head *a, t_head *b, int c);
+void	ft_rr(t_head *a, t_head *b, int c);
+void	ft_rrr(t_head *a, t_head *b, int c);
 
 
 #endif
