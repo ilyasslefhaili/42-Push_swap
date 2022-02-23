@@ -35,7 +35,7 @@ SRCS = instructions1.c\
 		ft_fill_stack.c\
 		fun_for_help.c
 
-SRCSB = checker.c\
+SRCSB = checker_bonus.c\
 		get_next_line_bonus.c\
 		get_next_line_utils_bonus.c
 

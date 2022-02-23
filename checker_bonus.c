@@ -104,4 +104,5 @@ int	main(int ac, char **av)
 	}
 	ft_if1(a->first, ac, size, a->len);
 	finish(a, b);
+	while(1);
 }
