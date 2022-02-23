@@ -18,6 +18,8 @@ int	check(t_element *a, int ac)
 	int	j;
 
 	k = malloc(sizeof(int) * ac - 1);
+	if (!k)
+		exit(1);
 	i = 0;
 	j = 0;
 	while (a)
@@ -25,15 +27,13 @@ int	check(t_element *a, int ac)
 		j = 0;
 		while (j < i)
 		{
-			if (k[j] > a->value)
+			if (k[j++] > a->value)
 			{
 				free(k);
 				return (0);
 			}
-			j++;
 		}
-		k[i] = a->value;
-		i++;
+		k[i++] = a->value;
 		a = a->next;
 	}
 	return (-1);
@@ -104,5 +104,4 @@ int	main(int ac, char **av)
 	}
 	ft_if1(a->first, ac, size, a->len);
 	finish(a, b);
-	while(1);
 }

@@ -59,13 +59,18 @@ int	checkismin(t_element *b)
 	return (e);
 }
 
-void	ft_bable(int *a, int ac)
+void	ft_bable(int *a, int ac, t_element *c)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	j = 0;
+	while (c)
+	{
+		a[i++] = c->value;
+		c = c->next;
+	}
+	i = 0;
 	while (i < ac - 1)
 	{
 		j = i;
@@ -91,13 +96,9 @@ void	ft_index(t_element *a, int ac)
 
 	b = a;
 	abab = malloc(sizeof(int) * (ac - 1));
-	i = 0;
-	while (a)
-	{
-		abab[i++] = a->value;
-		a = a->next;
-	}
-	ft_bable(abab, ac);
+	if (!abab)
+		exit(1);
+	ft_bable(abab, ac, b);
 	while (b)
 	{
 		i = 0;

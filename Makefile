@@ -46,21 +46,21 @@ OBJSB = $(subst .c,.o,$(SRCSB))
 all : $(NAME)
 
 $(NAME) : $(PU)
-	$(CC) $(PU) -o $(NAME)
+	@$(CC) $(PU) -o $(NAME)
 	@echo [executable Created]
 
 $(PU) : $(OBJS)
-	$(CC) -c $(FLAGS) $(SRCS)
-	$(AR) $(PU) $(OBJS)
+	@$(CC) -c $(FLAGS) $(SRCS)
+	@$(AR) $(PU) $(OBJS)
 
 bonus : $(BONUS)
 
 $(BONUS) : $(PUB) $(PU)
-	$(CC) $(PUB) $(PU) -o $(BONUS)
+	@$(CC) $(PUB) $(PU) -o $(BONUS)
 
 $(PUB) : $(OBJSB)
-	$(CC) -c $(FLAGS) $(SRCSB)
-	$(AR) $(PUB) $(OBJSB)
+	@$(CC) -c $(FLAGS) $(SRCSB)
+	@$(AR) $(PUB) $(OBJSB)
 
 clean :
 	@rm -rf *.o

@@ -38,7 +38,7 @@ void	error(void);
 int		ft_checkismax(t_element *b);
 int		checkismin(t_element *b);
 void	fivesort(t_head *a, t_head *b);
-void	ft_bable(int *a, int ac);
+void	ft_bable(int *a, int ac, t_element *c);
 void	ft_index(t_element *a, int ac);
 void	sorting(t_head *a, t_head *b);
 void	ready_to_push(t_head *a, t_head *b, t_min_max nx, int *k);

@@ -49,6 +49,8 @@ void	fillstack(char **av, int ac, t_head *a)
 
 	j = 0;
 	arr = malloc(sizeof(int) * (ac - 1));
+	if (!arr)
+		exit(1);
 	i = ac - 1;
 	while (i > 0)
 	{

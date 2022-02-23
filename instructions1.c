@@ -16,6 +16,8 @@ int	ft_pop(t_head *a)
 	t_element	*temp;
 	int			c;
 
+	if (!a)
+		exit(1);
 	c = a->first->value;
 	temp = a->first;
 	a->first = a->first->next;

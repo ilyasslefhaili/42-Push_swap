@@ -48,6 +48,8 @@ void	check_if_sort(t_element *c, int ac, t_head *a, t_head *b)
 	int	j;
 
 	k = malloc(sizeof(int) * ac - 1);
+	if (!k)
+		exit(1);
 	i = 0;
 	j = 0;
 	while (c)
@@ -55,15 +57,13 @@ void	check_if_sort(t_element *c, int ac, t_head *a, t_head *b)
 		j = 0;
 		while (j < i)
 		{
-			if (k[j] > c->value)
+			if (k[j++] > c->value)
 			{
 				free(k);
 				return ;
 			}
-			j++;
 		}
-		k[i] = c->value;
-		i++;
+		k[i++] = c->value;
 		c = c->next;
 	}
 	finish(a, b);
