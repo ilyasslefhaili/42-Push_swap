@@ -18,7 +18,7 @@ PU = push_swap.a
 
 PUB = checker.a
 
-CC = gcc
+CC = cc
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -44,7 +44,7 @@ OBJS = $(subst .c,.o,$(SRCS))
 OBJSB = $(subst .c,.o,$(SRCSB))
 
 all : $(NAME)
-	
+
 $(NAME) : $(PU)
 	$(CC) $(PU) -o $(NAME)
 	@echo [executable Created]

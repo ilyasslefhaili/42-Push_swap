@@ -41,7 +41,7 @@ void	checknumber(char **av)
 	}
 }
 
-void	check_if_sort(t_element *a, int ac)
+void	check_if_sort(t_element *c, int ac, t_head *a, t_head *b)
 {
 	int	*k;
 	int	i;
@@ -50,22 +50,23 @@ void	check_if_sort(t_element *a, int ac)
 	k = malloc(sizeof(int) * ac - 1);
 	i = 0;
 	j = 0;
-	while (a)
+	while (c)
 	{
 		j = 0;
 		while (j < i)
 		{
-			if (k[j] > a->value)
+			if (k[j] > c->value)
 			{
 				free(k);
 				return ;
 			}
 			j++;
 		}
-		k[i] = a->value;
+		k[i] = c->value;
 		i++;
-		a = a->next;
+		c = c->next;
 	}
+	finish(a, b);
 	exit(0);
 }
 

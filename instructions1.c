@@ -52,7 +52,7 @@ void	ft_ss(t_head *a, t_head *b, int c)
 {
 	ft_swap(a, 'r');
 	ft_swap(b, 'r');
-	if(c == 1)
+	if (c == 1)
 		write(1, "ss\n", 3);
 }
 

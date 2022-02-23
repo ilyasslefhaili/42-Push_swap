@@ -67,3 +67,9 @@ void	ft_free(t_head *a)
 		ft_pop(a);
 	free(a);
 }
+
+void	finish(t_head *a, t_head *b)
+{
+	ft_free(a);
+	ft_free(b);
+}

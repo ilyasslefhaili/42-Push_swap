@@ -36,7 +36,7 @@ void	ft_rr(t_head *a, t_head *b, int c)
 	{
 		ft_rotate(a, 'r');
 		ft_rotate(b, 'r');
-		if(c == 1)
+		if (c == 1)
 			write(1, "rr\n", 3);
 	}
 }
@@ -70,7 +70,7 @@ void	ft_rrr(t_head *a, t_head *b, int c)
 	{
 		ft_reverse_r(a, 'r');
 		ft_reverse_r(b, 'r');
-		if(c == 1)
+		if (c == 1)
 			write(1, "rrr\n", 4);
 	}
 }

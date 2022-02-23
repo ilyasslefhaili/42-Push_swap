@@ -121,7 +121,7 @@ int	main(int ac, char **av)
 	a->first = NULL;
 	checknumber(av);
 	fillstack(av, ac, a);
-	check_if_sort(a->first, ac);
+	check_if_sort(a->first, ac, a, b);
 	if (a->len <= 5)
 		fivesort(a, b);
 	else
