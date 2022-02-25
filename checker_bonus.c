@@ -48,7 +48,7 @@ void	ft_if(t_head *a, t_head *b, char *str)
 	else if (ft_strcmp(str, "ra\n") == 0)
 		ft_rotate(a, 'c');
 	else if (ft_strcmp(str, "rb\n") == 0)
-		ft_rotate(a, 'c');
+		ft_rotate(b, 'c');
 	else if (ft_strcmp(str, "rr\n") == 0)
 		ft_rr(a, b, 0);
 	else if (ft_strcmp(str, "sa\n") == 0)
@@ -77,6 +77,16 @@ void	ft_if1(t_element *a, int ac, int size, int len)
 		write(1, "OK\n", 3);
 }
 
+void	get_instruction(char *str, t_head *a, t_head *b)
+{
+	while (str)
+	{
+		ft_if(a, b, str);
+		free(str);
+		str = get_next_line(0, 1);
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_head	*a;
@@ -97,11 +107,7 @@ int	main(int ac, char **av)
 	fillstack(av, ac, a);
 	size = a->len;
 	str = get_next_line(0, 1);
-	while (str)
-	{
-		ft_if(a, b, str);
-		str = get_next_line(0, 1);
-	}
+	get_instruction(str, a, b);
 	ft_if1(a->first, ac, size, a->len);
 	finish(a, b);
 }
