@@ -104,6 +104,8 @@ int	main(int ac, char **av)
 	check_is_str_empty(av, ac);
 	a = malloc(sizeof(t_head));
 	b = malloc(sizeof(t_head));
+	if (!a || !b)
+		exit(1);
 	a->len = 0;
 	b->len = 0;
 	b->first = NULL;
