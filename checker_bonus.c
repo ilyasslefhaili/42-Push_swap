@@ -36,6 +36,7 @@ int	check(t_element *a, int ac)
 		k[i++] = a->value;
 		a = a->next;
 	}
+	free(k);
 	return (-1);
 }
 

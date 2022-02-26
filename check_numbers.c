@@ -51,7 +51,6 @@ void	check_if_sort(t_element *c, int ac, t_head *a, t_head *b)
 	if (!k)
 		exit(1);
 	i = 0;
-	j = 0;
 	while (c)
 	{
 		j = 0;
@@ -66,6 +65,7 @@ void	check_if_sort(t_element *c, int ac, t_head *a, t_head *b)
 		k[i++] = c->value;
 		c = c->next;
 	}
+	free(k);
 	finish(a, b);
 	exit(0);
 }
