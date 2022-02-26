@@ -63,9 +63,9 @@ $(PUB) : $(OBJSB)
 	@$(AR) $(PUB) $(OBJSB)
 
 clean :
-	@rm -rf *.o
+	@rm -rf *.o $(PU) $(PUB)
 
 fclean : clean
-	@rm -rf $(PU) $(PUB)
+	@rm -rf $(BONUS) $(NAME)
 
 re : fclean all

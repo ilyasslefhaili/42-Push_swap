@@ -77,13 +77,18 @@ void	ft_if1(t_element *a, int ac, int size, int len)
 		write(1, "OK\n", 3);
 }
 
-void	get_instruction(char *str, t_head *a, t_head *b)
+void	get_instruction(t_head *a, t_head *b)
 {
+	char	*str;
+	char	*s;
+
+	str = get_next_line(0, 2);
 	while (str)
 	{
 		ft_if(a, b, str);
-		free(str);
-		str = get_next_line(0, 1);
+		s = str;
+		str = get_next_line(0, 2);
+		free(s);
 	}
 }
 
@@ -91,7 +96,6 @@ int	main(int ac, char **av)
 {
 	t_head	*a;
 	t_head	*b;
-	char	*str;
 	int		size;
 
 	if (ac <= 1)
@@ -106,8 +110,7 @@ int	main(int ac, char **av)
 	checknumber(av);
 	fillstack(av, ac, a);
 	size = a->len;
-	str = get_next_line(0, 1);
-	get_instruction(str, a, b);
+	get_instruction(a, b);
 	ft_if1(a->first, ac, size, a->len);
 	finish(a, b);
 }

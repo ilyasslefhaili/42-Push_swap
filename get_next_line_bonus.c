@@ -39,8 +39,9 @@ char	*ft_strchar(char *str, char c)
 
 static char	*done(char *chkra, char *buf, int fd, int BUFFER_SIZE)
 {
-	int	i;
-	int	rd;
+	int		i;
+	int		rd;
+	char	*str;
 
 	i = 0;
 	while (buf[i] != '\n')
@@ -50,7 +51,9 @@ static char	*done(char *chkra, char *buf, int fd, int BUFFER_SIZE)
 		if (rd <= 0)
 			break ;
 		buf[rd] = '\0';
+		str = chkra;
 		chkra = ft_strjoin(chkra, buf);
+		free(str);
 		while (buf[i] != '\n' && buf[i])
 			i++;
 	}
